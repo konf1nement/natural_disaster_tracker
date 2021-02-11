@@ -2,6 +2,9 @@ import { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import LocationInfoBox from './LocationInfoBox'
 import LocationFire from './LocationFire'
+import LocationCyclone from './LocationCyclone'
+import LocationVolcano from './LocationVolcano'
+import LocationIceberg from './LocationIceberg'
 
 const Map = ({eventData, center, zoom}) => {
     const [locationInfo, setLocationInfo] = useState(null)
@@ -12,6 +15,28 @@ const Map = ({eventData, center, zoom}) => {
                         onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
                     />
         }
+
+        if(ev.categories[0].id === 10){
+            return  <LocationCyclone 
+                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+                    />
+        }
+
+        if(ev.categories[0].id === 12){
+            return  <LocationVolcano
+                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+                    />
+        }
+
+        if(ev.categories[0].id === 12){
+            return  <LocationIceberg
+                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+                    />
+        }
+
         return null
     })
 
