@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react'
 import LocationFire from './LocationFire'
 import LocationInfoBox from './LocationInfoBox'
 import LocationCyclone from './LocationCyclone'
+import LocationVolcano from './LocationVolcano'
 
 const Map = ({eventData, center, zoom}) => {
     const [locationInfo, setLocationInfo] = useState(null)
@@ -20,7 +21,23 @@ const Map = ({eventData, center, zoom}) => {
                         onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
                     />
         }
+
+        if(ev.categories[0].id === 12){
+            return  <LocationVolcano 
+                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+                    />
+        }
+
+        if(ev.categories[0].id === 15){
+            return  <LocationVolcano 
+                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+                    />
+        }
+
         return null
+        
     })
 
     return (
