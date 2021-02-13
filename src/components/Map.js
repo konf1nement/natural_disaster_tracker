@@ -4,7 +4,7 @@ import LocationInfoBox from './LocationInfoBox'
 import LocationFire from './LocationFire'
 import LocationCyclone from './LocationCyclone'
 import LocationVolcano from './LocationVolcano'
-import LocationIceberg from './LocationIceberg'
+import FilterBox from './FilterBox'
 
 const Map = ({eventData, center, zoom}) => {
     const [locationInfo, setLocationInfo] = useState(null)
@@ -23,20 +23,12 @@ const Map = ({eventData, center, zoom}) => {
                     />
         }
 
-        if(ev.categories[0].id === 12){
-            return  <LocationVolcano
-                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
-                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
-                    />
-        }
-
-        if(ev.categories[0].id === 12){
-            return  <LocationIceberg
-                        lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
-                        onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
-                    />
-        }
-
+        // if(ev.categories[0].id === 12){
+        //     return  <LocationVolcano
+        //                 lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}
+        //                 onClick={() => setLocationInfo({id: ev.id, title: ev.title})}
+        //             />
+        // }
         return null
     })
 
@@ -51,6 +43,7 @@ const Map = ({eventData, center, zoom}) => {
                 {markers}
             </GoogleMapReact>
             {locationInfo && <LocationInfoBox info={locationInfo} />}
+            <FilterBox />
         </div>
     )
 }
